@@ -1,0 +1,69 @@
+
+[bar]
+position = "top" # "top" or "bottom"
+size = 34
+border_radius = 0
+background_opacity = 1
+
+[widgets]
+left = ["workspaces", "window_title"]
+center = ["clock"]
+right = [
+  "tray",
+  "quick_settings",
+  "notifications",
+  "battery",
+]
+border_radius = 40
+background_opacity = 1.0
+
+# Per-widget options use [widgets.<name>] sections.
+# Example:
+#   [widgets.clock]
+#   format = "%H:%M"
+#
+#   [widgets.battery]
+#   disabled = true
+#
+#   [widgets.media]
+#   visualizer = true  # Enable/disable cava audio visualizer (default: true)
+#
+# Custom widgets use the "custom-" prefix for user-defined buttons:
+#   right = ["custom-power", "tray", "clock"]
+#
+#   [widgets.custom-power]
+#   icon = "system-shutdown-symbolic"
+#   label = "Power"
+#   tooltip = "Power menu"
+#   on_click = "wlogout"
+#   on_click_right = "systemctl suspend"
+#
+#   [widgets.custom-weather]
+#   exec = "curl -s 'wttr.in/?format=1'"
+#   template = " {output}"
+#   interval = 600
+#   on_click = "xdg-open https://wttr.in"
+#   tooltip = "Weather"
+#   max_chars = 30
+#
+# See documentation for all widget options.
+
+[theme]
+mode = "dark" # "auto", "dark", "light", "gtk"
+#accent = "#adabe0" # "gtk", "none", or hex color
+#animations = true  # Enable/disable all CSS transitions and animations
+#ripple = true      # Enable/disable Material Design ripple effect on click
+
+[theme.icons]
+theme = "gtk" # "material" or "gtk"
+weight = 400       # Material icon stroke weight (100-700)
+
+[osd]
+enabled = true
+position = "bottom" # "bottom", "top", "left", "right"
+
+[advanced]
+compositor = "auto"  # "auto", "hyprland", "niri", "mango"
+
+# Custom CSS: place style.css in same directory as this file.
+# See documentation for available CSS variables and classes.

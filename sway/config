@@ -1,0 +1,115 @@
+# Apply to all Wayland windows
+for_window [app_id="^.*"] opacity 0.9
+for_window [class="^.*"] opacity 0.9
+
+
+### Variables
+set $mod Mod4
+set $browser zen-browser
+set $left left
+set $down down
+set $up up
+set $right right
+set $term foot
+set $menu anyrun
+
+### Output configuration
+exec vibepanel
+output * bg /home/aayu/Pictures/Wallpapers/nn.jpg fill
+output eDP-1 scale 1.25
+
+### SwayFX Visuals
+blur on
+blur_xray off
+blur_passes 2
+blur_radius 10
+
+corner_radius 20
+gaps inner 7
+gaps outer 10
+shadows off
+
+# Window decoration and transparency
+default_border pixel 0
+default_dim_inactive 0.2
+for_window [tiling] opacity 0.9
+smart_gaps off
+
+### Input configuration
+input type:touchpad {
+    dwt enabled
+    tap enabled
+    natural_scroll enabled
+    middle_emulation enabled
+}
+
+### Gestures (Native Sway/SwayFX)
+bindgesture swipe:3:right workspace prev
+bindgesture swipe:3:left workspace next
+bindgesture swipe:4:right move container to workspace prev; workspace prev
+bindgesture swipe:4:left move container to workspace next; workspace next
+
+### Key bindings
+# Basics:
+bindsym $mod+t exec $term
+bindsym $mod+b exec $browser
+bindsym $mod+q kill
+bindsym $mod+d exec anyrun
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+e exec swaynag -t warning -m 'Exit sway?' -B 'Yes' 'swaymsg exit'
+
+# Movement:
+bindsym $mod+f fullscreen toggle global
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+
+# Workspaces:
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+bindsym $mod+7 workspace number 7
+bindsym $mod+8 workspace number 8
+bindsym $mod+9 workspace number 9
+bindsym $mod+0 workspace number 10
+
+# Move to Workspaces:
+bindsym $mod+Shift+1 move container to workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5
+bindsym $mod+Shift+6 move container to workspace number 6
+bindsym $mod+Shift+7 move container to workspace number 7
+bindsym $mod+Shift+8 move container to workspace number 8
+bindsym $mod+Shift+9 move container to workspace number 9
+bindsym $mod+Shift+0 move container to workspace number 10
+
+# Layout & Floating
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+bindsym $mod+v floating toggle
+bindsym $mod+space focus mode_toggle
+
+# Resize Mode
+mode "resize" {
+    bindsym $left resize shrink width 10px
+    bindsym $down resize grow height 10px
+    bindsym $up resize shrink height 10px
+    bindsym $right resize grow width 10px
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
+# Audio/Brightness (Requires pactl and brightnessctl)
+
+bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
+bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
+
+include /etc/sway/config.d/*
